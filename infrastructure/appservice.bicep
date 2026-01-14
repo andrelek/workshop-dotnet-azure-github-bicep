@@ -1,5 +1,5 @@
  param location string = 'centralus'
-  param appName string
+ param appName string
 
  var appServiceProperties = {
        serverFarmId: appServicePlan.id
@@ -20,7 +20,7 @@
 
 
 resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
-      name: 'asp-workshop-dnazghbicep-andrelek-dev'
+      name: 'asp-${appName}'
       location: location
       sku: {
         name: 'P0V3'
@@ -35,7 +35,7 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2022-09-01' = {
 
 
 resource appService 'Microsoft.Web/sites@2022-09-01' = {
-    name: 'app-workshop-dnazghbicep-andrelek-dev'
+    name: 'asp-${appName}'
     location: location
     identity: {
      type: 'SystemAssigned'
